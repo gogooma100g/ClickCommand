@@ -8,4 +8,17 @@ source $BASEDIR/../common.sh
 #
 ##########################################################################
 
-text "Write%swhat%syou%swant%sto%sinput"
+text='Hello%sAndroid'
+
+connectedDeviceCount=$(getConnectedDeviceCount)
+echo "connectedDeviceCount : $connectedDeviceCount"
+
+if [[ connectedDeviceCount -eq 2 ]]
+then
+    selectDevice
+    ANDROID_SERIAL=$selectedDevice text $text
+    adb -s $selectedDevice install $(pbpaste)
+else
+    text $text
+fi
+
