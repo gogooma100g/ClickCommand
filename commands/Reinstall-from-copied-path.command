@@ -19,17 +19,18 @@ then
     selectDevice
     exist=$(adb -s $selectedDevice shell pm path $package)
     if [ -z "$exist" ]; then
-        adb -s $selectedDevice install $(pbpaste)
+        adb -s $selectedDevice install "$(pbpaste)"
     else
-        adb -s $selectedDevice install -r $(pbpaste)
+        adb -s $selectedDevice install -r "$(pbpaste)"
     fi
 else
     #adb shell pm list packages | grep $package
     exist=$(adb shell pm path $package)
     echo "exist : $exist"
     if [ -z "$exist" ]; then
-        adb install $(pbpaste)
+        adb install "$(pbpaste)"
     else
-        adb install -r $(pbpaste)
+        adb install -r "$(pbpaste)"
     fi
 fi
+

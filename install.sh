@@ -1,4 +1,7 @@
 install() {
+
+    #you can delete first before install
+    #deleteApp
     comm=$1
 
     connectedDeviceCount=$(getConnectedDeviceCount)

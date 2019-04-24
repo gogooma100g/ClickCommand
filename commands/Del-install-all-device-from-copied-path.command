@@ -11,13 +11,6 @@ source $BASEDIR/../common.sh
 package=$(aapt dump badging "$(pbpaste)" | awk '/package/{gsub("name=|'"'"'","");  print $2}')
 #echo "package : $package"
 
-#adb shell pm list packages | grep $package
-exist=$(adb shell pm path $package)
-echo "exist : $exist"
-if [ -z "$exist" ]; then
-    adb devices | tail -n +2 | cut -sf 1 | xargs -IX adb -s X install $(pbpaste)
-else
-    adb devices | tail -n +2 | cut -sf 1 | xargs -IX adb -s X uninstall $package
-    adb devices | tail -n +2 | cut -sf 1 | xargs -IX adb -s X install $(pbpaste)
-fi
+adb devices | tail -n +2 | cut -sf 1 | xargs -IX adb -s X uninstall $package
+adb devices | tail -n +2 | cut -sf 1 | xargs -IX adb -s X install "$(pbpaste)"
 

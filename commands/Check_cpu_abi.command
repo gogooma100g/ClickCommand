@@ -4,11 +4,9 @@ source $BASEDIR/../common.sh
 
 ##########################################################################
 #
-# You can enter a desired text on the connected device
+# check out CPU_ABI
 #
 ##########################################################################
-
-text='Hello%sAndroid'
 
 connectedDeviceCount=$(getConnectedDeviceCount)
 echo "connectedDeviceCount : $connectedDeviceCount"
@@ -16,8 +14,10 @@ echo "connectedDeviceCount : $connectedDeviceCount"
 if [[ connectedDeviceCount -eq 2 ]]
 then
     selectDevice
-    ANDROID_SERIAL=$selectedDevice text $text
+    adb -s $selectedDevice shell getprop ro.product.cpu.abi
+    adb -s $selectedDevice shell getprop ro.product.cpu.ab2
 else
-    text $text
+    adb shell getprop ro.product.cpu.abi
+    adb shell getprop ro.product.cpu.abi2
 fi
 

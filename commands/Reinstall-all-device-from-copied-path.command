@@ -8,4 +8,4 @@ source $BASEDIR/../common.sh
 #
 ##########################################################################
 
-adb devices | tail -n +2 | cut -sf 1 | xargs -IX adb -s X install -r $(pbpaste)
+adb devices | tail -n +2 | cut -sf 1 | xargs -IX adb -s X install -r "$(pbpaste)"

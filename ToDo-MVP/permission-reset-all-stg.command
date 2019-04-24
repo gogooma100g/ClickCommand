@@ -5,4 +5,7 @@ source $BASEDIR/config.sh
 
 setStg
 
-adb shell pm reset-permissions $sAppId
+for permission in "${permissions[@]}"
+do
+    removePermission $permission
+done
